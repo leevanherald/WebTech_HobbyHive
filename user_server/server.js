@@ -49,12 +49,12 @@ app.get("/me", (req, res) => {
     return res.status(401).json({ message: "not logged in" });
   }
 
-  res.json({  user: req.session.user });
+  res.json({ user: req.session.user });
 });
 
-app.get("/api/userinfo", async (req, res) => {
-  console.log('User info API hit'); // Log when the API is hit
-
+app.get("/userinfo", async (req, res) => {
+  console.log("Session content at /userinfo:", req.session);
+  
   const user = req.session.user;
 
   if (!user) {
@@ -65,8 +65,7 @@ app.get("/api/userinfo", async (req, res) => {
   try {
     console.log('Fetching data for user ID:', user.id); // Log the user ID
 
-    const [rows] = await db.execute(
-      `SELECT 
+    const query = `SELECT 
         id,
         name,
         profile_photo,
@@ -82,21 +81,28 @@ app.get("/api/userinfo", async (req, res) => {
         age_group,
         education
       FROM users 
-      WHERE id = ?`,
-      [user.id]
-    );
+      WHERE id = ?`;
 
-    if (rows.length === 0) {
-      console.log("User not found in the database");
-      return res.status(404).json({ message: "User not found" });
-    }
+    db.query(query, [user.id], (err, results) => {
+      if (err) {
+        console.error("Database error:", err); // Log error
+        return res.status(500).json({ error: "Database error." });
+      }
 
-    console.log("User data fetched successfully:", rows[0]); // Log the fetched data
-    res.status(200).json(rows[0]);
+      if (results.length === 0) {
+        console.log("No user found with the given ID");
+        return res.status(404).json({ error: "User not found." });
+      }
 
+      // Log the results for debugging
+      console.log("User data retrieved:", results);
+
+      // Send the user data back as response
+      res.status(200).json({ message: "User data fetched successfully.", user: results[0] });
+    });
   } catch (error) {
-    console.error("Error fetching user data:", error); // Log the error stack
-    res.status(500).json({ message: "Server error", error: error.message });
+    console.error("Error in /userinfo endpoint:", error);
+    res.status(500).json({ error: "Internal server error." });
   }
 });
 
@@ -376,7 +382,17 @@ app.post("/gethobbyrisk", (req, res) => {
 });
 
 app.post("/userhobby", (req, res) => {
-  const { email } = req.body;
+  console.log("Session content at /userhobby:", req.session);
+  
+  const user = req.session.user;
+
+  if (!user) {
+    console.log("User not logged in");
+    return res.status(401).json({ message: "Not logged in" });
+  }
+
+  const { email } = req.session.user;
+  console.log("EMAIL"+email)
 
   const query =
     "SELECT hobby, experience, description FROM user_hobbies WHERE email = ?";

@@ -10,20 +10,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     // Fetch user profile data
-    // axios.get('http://localhost:3005/me', { withCredentials: true })
-    //   .then(response => {
-    //     setUserData(response.data.user);
-    //     console.log(response.data.user)
-    //   })
-
-    //   .catch(err => {
-    //     console.error('Error fetching user data:', err);
-    //   });
-
-
     axios.get('http://localhost:3005/userinfo', { withCredentials: true })
       .then(response => {
-       
+        setUserData(response.data)
         console.log(response.data)
       })
 
@@ -32,13 +21,19 @@ const ProfilePage = () => {
       });
 
     // Fetch user hobbies
-    axios.post('http://localhost:3005/userhobby', { email: 'user@example.com' })
+    axios.post(
+      'http://localhost:3005/userhobby',
+      {}, // POST body (you can pass real data here if needed)
+      { withCredentials: true } // Axios config
+    )
       .then(response => {
+        console.log(response.data);
         setUserHobbies(response.data);
       })
       .catch(err => {
         console.error('Error fetching hobbies:', err);
       });
+    
   }, []);
 
 
@@ -76,10 +71,10 @@ const ProfilePage = () => {
           <div className="mb-4">
             <h2 className="text-lg font-medium text-gray-700">Personal Information</h2>
             <div className="space-y-2">
-              <p className="text-gray-600"><strong>Name:</strong> {userData.name}</p>
-              <p className="text-gray-600"><strong>Email:</strong> {userData.email}</p>
-              <p className="text-gray-600"><strong>Location:</strong> {userData.city}, {userData.state}, {userData.country}</p>
-              <p className="text-gray-600"><strong>Age Group:</strong> {userData.age_group}</p>
+              <p className="text-gray-600"><strong>Name:</strong> {userData.user.name}</p>
+              <p className="text-gray-600"><strong>Email:</strong> {userData.user.email}</p>
+              <p className="text-gray-600"><strong>Location:</strong> {userData.user.city}, {userData.user.state}, {userData.user.country}</p>
+              <p className="text-gray-600"><strong>Age Group:</strong> {userData.user.age_group}</p>
             </div>
           </div>
 
