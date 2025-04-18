@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
-import './feedbackPage.css'; // optional styling
 import { toast } from 'react-toastify';
+import NavigationBar from './NavigationBar';
+import { FiUser, FiPhone, FiStar, FiMapPin, FiFileText, FiImage, FiUpload, FiX } from 'react-icons/fi';
 
-const FeedbackPage = () => {
+const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -55,66 +56,229 @@ const FeedbackPage = () => {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
+
+    // Create FormData to send as a multipart form request (for the image and other data)
+    const feedbackFormData = new FormData();
+    feedbackFormData.append('name', formData.name);
+    feedbackFormData.append('phone', formData.phone);
+    feedbackFormData.append('hobby', formData.hobby);
+    feedbackFormData.append('region', formData.region);
+    feedbackFormData.append('description', formData.description);
+
+    if (formData.image) {
+      const imageFile = fileInputRef.current.files[0];
+      feedbackFormData.append('image', imageFile);
+    }
+
+    try {
+      const response = await fetch('http://localhost:3005/submit-feedback', {
+        method: 'POST',
+        body: feedbackFormData,
+      });
+      if (!response.ok) throw new Error('Failed to submit feedback');
       toast.success('Feedback submitted successfully!');
       setFormData({ name: '', phone: '', hobby: '', region: '', description: '', image: null });
+    } catch (error) {
+      toast.error('Error submitting feedback');
+      console.error('Error:', error);
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   return (
-    <div className="feedback-container">
-      <h2>Suggest a New Hobby</h2>
-      <form className="feedback-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Your Name</label>
-          <input name="name" value={formData.name} onChange={handleInputChange} />
-          {errors.name && <p className="error">{errors.name}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Phone Number</label>
-          <input name="phone" value={formData.phone} onChange={handleInputChange} />
-          {errors.phone && <p className="error">{errors.phone}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Hobby Name</label>
-          <input name="hobby" value={formData.hobby} onChange={handleInputChange} />
-          {errors.hobby && <p className="error">{errors.hobby}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Region</label>
-          <select name="region" value={formData.region} onChange={handleInputChange}>
-            <option value="">Select Region</option>
-            {regions.map((r, i) => <option key={i} value={r}>{r}</option>)}
-          </select>
-          {errors.region && <p className="error">{errors.region}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Description (min 30 characters)</label>
-          <textarea name="description" value={formData.description} onChange={handleInputChange} rows="4" />
-          <small>{formData.description.length} / 500</small>
-          {errors.description && <p className="error">{errors.description}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Upload an Image (optional)</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} ref={fileInputRef} />
-          {formData.image && (
-            <div className="image-preview">
-              <img src={formData.image} alt="Preview" />
-              <button type="button" onClick={handleClearImage}>Remove Image</button>
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50">
+      
+      <div className="container mx-auto px-4 py-12 mt-16">
+        <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 py-6 px-8">
+            <h2 className="text-3xl font-bold text-white">Suggest a New Hobby</h2>
+            <p className="text-yellow-100 mt-2">
+              Share your hobby ideas with the HobbyHive community
+            </p>
+          </div>
+          
+          {/* Form */}
+          <form className="p-6 md:p-8 space-y-6" onSubmit={handleSubmit}>
+            {/* Name field */}
+            <div>
+              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="name">
+                <FiUser className="mr-2 text-yellow-500" />
+                Your Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
+                placeholder="Enter your full name"
+              />
+              {errors.name && (
+                <p className="text-red-500 mt-1 text-sm">{errors.name}</p>
+              )}
             </div>
-          )}
-        </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Submitting...' : 'Submit Suggestion'}
-        </button>
-      </form>
+            {/* Phone field */}
+            <div>
+              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="phone">
+                <FiPhone className="mr-2 text-yellow-500" />
+                Phone Number
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
+                placeholder="Enter 10-digit phone number"
+              />
+              {errors.phone && (
+                <p className="text-red-500 mt-1 text-sm">{errors.phone}</p>
+              )}
+            </div>
+
+            {/* Two column layout for smaller fields */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Hobby field */}
+              <div>
+                <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="hobby">
+                  <FiStar className="mr-2 text-yellow-500" />
+                  Hobby Name
+                </label>
+                <input
+                  id="hobby"
+                  name="hobby"
+                  value={formData.hobby}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.hobby ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
+                  placeholder="Name of the hobby"
+                />
+                {errors.hobby && (
+                  <p className="text-red-500 mt-1 text-sm">{errors.hobby}</p>
+                )}
+              </div>
+
+              {/* Region field */}
+              <div>
+                <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="region">
+                  <FiMapPin className="mr-2 text-yellow-500" />
+                  Region
+                </label>
+                <select
+                  id="region"
+                  name="region"
+                  value={formData.region}
+                  onChange={handleInputChange}
+                  className={`w-full px-4 py-3 rounded-lg border ${errors.region ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200 bg-white`}
+                >
+                  <option value="">Select Region</option>
+                  {regions.map((r, i) => (
+                    <option key={i} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </select>
+                {errors.region && (
+                  <p className="text-red-500 mt-1 text-sm">{errors.region}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Description field */}
+            <div>
+              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="description">
+                <FiFileText className="mr-2 text-yellow-500" />
+                Description (min 30 characters)
+              </label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                rows="4"
+                className={`w-full px-4 py-3 rounded-lg border ${errors.description ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200 resize-none`}
+                placeholder="Describe the hobby in detail..."
+              />
+              <div className="flex justify-between mt-1 text-sm">
+                <span className={`${formData.description.length < 30 ? 'text-red-500' : 'text-green-500'}`}>
+                  {formData.description.length} characters
+                </span>
+                <span className="text-gray-500">
+                  Maximum 500 characters
+                </span>
+              </div>
+              {errors.description && (
+                <p className="text-red-500 mt-1 text-sm">{errors.description}</p>
+              )}
+            </div>
+
+            {/* Image upload field */}
+            <div>
+              <label className="flex items-center text-gray-700 font-medium mb-2">
+                <FiImage className="mr-2 text-yellow-500" />
+                Upload an Image (optional)
+              </label>
+              
+              {!formData.image ? (
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-yellow-500 transition-colors duration-200 cursor-pointer" onClick={() => fileInputRef.current.click()}>
+                  <FiUpload className="mx-auto h-12 w-12 text-gray-400" />
+                  <p className="mt-2 text-gray-600">Click to upload an image</p>
+                  <p className="text-xs text-gray-500 mt-1">PNG, JPG, GIF up to 10MB</p>
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    ref={fileInputRef}
+                    className="hidden"
+                  />
+                </div>
+              ) : (
+                <div className="relative mt-2 rounded-lg overflow-hidden">
+                  <img 
+                    src={formData.image} 
+                    alt="Preview" 
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleClearImage}
+                    className="absolute top-2 right-2 bg-gray-800 bg-opacity-70 text-white p-2 rounded-full hover:bg-opacity-100 transition-opacity duration-200"
+                  >
+                    <FiX className="w-5 h-5" />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Submit button */}
+            <div className="pt-4">
+              <button
+                type="submit"
+                disabled={loading}
+                className={`w-full py-3 px-4 rounded-lg text-white font-medium text-lg shadow transition-all duration-200 ${
+                  loading 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600'
+                }`}
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </div>
+                ) : (
+                  'Submit Suggestion'
+                )}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

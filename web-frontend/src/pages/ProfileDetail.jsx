@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // useNavigate instead of useHistory
-import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  Button,
-  ActivityIndicator,
-} from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaUsers, FaMapMarkerAlt, FaLeaf, FaHome } from "react-icons/fa";
-import { Tab, Tabs } from "react-bootstrap";
-import { LinearProgress } from "@mui/material";
+import { Tab, Tabs, Button, Image } from "react-bootstrap";
+import { LinearProgress, CircularProgress } from "@mui/material";
 import './ProfileDetail.css';
 
 const getUserHobbies = async (email) => {
@@ -33,15 +25,14 @@ const getUserHobbies = async (email) => {
 };
 
 function ProfileDetail() {
-  const { email } = useParams(); // assuming email is passed as a URL parameter
-  const navigate = useNavigate(); // useNavigate for navigation
+  const { email } = useParams();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({});
   const [hobbies, setHobbies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfileData = async () => {
-      // Fetch profile data (example)
       const profileData = await fetch(`http://localhost:3005/userprofile/${email}`);
       const profileJSON = await profileData.json();
       setProfile(profileJSON);
@@ -73,8 +64,8 @@ function ProfileDetail() {
     return stats.map((stat, index) => (
       <div key={index} className="stat-item">
         <div className="stat-icon">{stat.icon}</div>
-        <Text className="stat-value">{stat.value}</Text>
-        <Text className="stat-label">{stat.label}</Text>
+        <div className="stat-value">{stat.value}</div>
+        <div className="stat-label">{stat.label}</div>
       </div>
     ));
   };
@@ -85,7 +76,7 @@ function ProfileDetail() {
         <Button
           variant="light"
           className="back-button"
-          onClick={() => navigate(-1)} // use navigate(-1) to go back
+          onClick={() => navigate(-1)}
         >
           <FaArrowLeft /> Back
         </Button>
@@ -105,7 +96,7 @@ function ProfileDetail() {
           <h3>{profile.name || "User"}</h3>
           <p>{profile.current_status || "No status"}</p>
           <div className="gender-container">
-            <Text>{profile.gender || "N/A"}</Text>
+            <p>{profile.gender || "N/A"}</p>
           </div>
           {renderStats()}
         </div>
@@ -115,8 +106,8 @@ function ProfileDetail() {
         <h3>Hobbies & Interests</h3>
         {loading ? (
           <div className="loading-container">
-            <ActivityIndicator size="large" color="#1976D2" />
-            <Text>Loading hobbies...</Text>
+            <CircularProgress color="primary" />
+            <p>Loading hobbies...</p>
           </div>
         ) : hobbies.length > 0 ? (
           <Tabs defaultActiveKey="home" id="hobbies-tabs" className="hobbies-tabs">
@@ -124,14 +115,14 @@ function ProfileDetail() {
               <Tab eventKey={hobby.hobby} title={hobby.hobby} key={index}>
                 <div className="hobby-details">
                   <h4>{hobby.hobby}</h4>
-                  <Text>{hobby.description || "No description available"}</Text>
+                  <p>{hobby.description || "No description available"}</p>
                   <div className="hobby-progress">
                     <LinearProgress
                       variant="determinate"
                       value={hobby.experience ? 100 : 50}
                       color="primary"
                     />
-                    <Text>Experience: {hobby.experience || "Beginner"}</Text>
+                    <p>Experience: {hobby.experience || "Beginner"}</p>
                   </div>
                 </div>
               </Tab>
@@ -139,7 +130,7 @@ function ProfileDetail() {
           </Tabs>
         ) : (
           <div className="empty-hobbies">
-            <Text>No hobbies added yet</Text>
+            <p>No hobbies added yet</p>
           </div>
         )}
       </div>
@@ -147,7 +138,7 @@ function ProfileDetail() {
       <div className="floating-action-button">
         <Button
           variant="primary"
-          onClick={() => navigate("/home")} // navigate to home
+          onClick={() => navigate("/home")}
         >
           <FaHome /> Home
         </Button>

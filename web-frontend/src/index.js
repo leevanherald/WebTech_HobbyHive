@@ -6,9 +6,12 @@ import App from "./App";
 import './index.css';  // Make sure to import your Tailwind CSS
 
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
+
+
     <App />
   </BrowserRouter>
 );

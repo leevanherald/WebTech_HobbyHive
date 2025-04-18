@@ -1,4 +1,12 @@
 services:
+  web:
+    build: ./web-frontend
+    ports:
+      - 8081:80
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
   user_server:
     build: ./user_server
     ports:

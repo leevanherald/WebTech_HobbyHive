@@ -3,6 +3,8 @@ const app = express();
 const cors = require("cors");
 const mysql = require("mysql2");
 const session = require("express-session");
+const multer = require('multer'); // For handling image uploads
+const path = require('path');
 
 require('dotenv').config();
 
@@ -44,6 +46,43 @@ app.use(
     },
   })
 );
+
+// Set up Multer for handling image uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Save images to the "uploads" folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique file name
+  }
+});
+
+
+const upload = multer({ storage });
+
+
+// Endpoint to submit feedback
+app.post('/submit-feedback', upload.single('image'), (req, res) => {
+  const { name, phone, hobby, region, description } = req.body;
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : null; // Get image URL if exists
+
+  const query = `
+    INSERT INTO feedbacks (name, phone, hobby, region, description, image_url)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  const values = [name, phone, hobby, region, description, imageUrl];
+
+  db.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Error saving feedback:', err);
+      return res.status(500).json({ error: 'Failed to submit feedback' });
+    }
+    res.status(200).json({ message: 'Feedback submitted successfully!' });
+  });
+});
+
+
 app.get("/me", (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ message: "not logged in" });
@@ -54,7 +93,7 @@ app.get("/me", (req, res) => {
 
 app.get("/userinfo", async (req, res) => {
   console.log("Session content at /userinfo:", req.session);
-  
+
   const user = req.session.user;
 
   if (!user) {
@@ -383,7 +422,7 @@ app.post("/gethobbyrisk", (req, res) => {
 
 app.post("/userhobby", (req, res) => {
   console.log("Session content at /userhobby:", req.session);
-  
+
   const user = req.session.user;
 
   if (!user) {
@@ -392,7 +431,7 @@ app.post("/userhobby", (req, res) => {
   }
 
   const { email } = req.session.user;
-  console.log("EMAIL"+email)
+  console.log("EMAIL" + email)
 
   const query =
     "SELECT hobby, experience, description FROM user_hobbies WHERE email = ?";
@@ -405,6 +444,82 @@ app.post("/userhobby", (req, res) => {
     res.json(results);
   });
 });
+
+app.post("/friend-request", (req, res) => {
+  const { receiverId } = req.body;
+  const senderId = req.session?.user?.id;
+
+  if (!senderId) return res.status(401).json({ message: "Not logged in" });
+
+  const query = `INSERT INTO friend_requests (sender_id, receiver_id) VALUES (?, ?)`;
+  db.query(query, [senderId, receiverId], (err, result) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+    res.json({ message: "Friend request sent" });
+  });
+});
+
+app.get("/friend-requests", (req, res) => {
+  const userId = req.session?.user?.id;
+
+  if (!userId) return res.status(401).json({ message: "Not logged in" });
+
+  const query = `
+    SELECT fr.id, fr.sender_id, u.name AS senderName, u.email AS senderEmail
+    FROM friend_requests fr
+    JOIN users u ON fr.sender_id = u.id
+    WHERE fr.receiver_id = ?
+  `;
+
+  db.query(query, [userId], (err, results) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+    res.json(results);
+  });
+});
+
+
+
+app.post("/friend-request/accept", (req, res) => {
+  const { requestId } = req.body;
+  const userId = req.session?.user?.id;
+
+  if (!userId) return res.status(401).json({ message: "Not logged in" });
+
+  const query = `UPDATE friend_requests SET status = 'accepted' WHERE id = ? AND receiver_id = ?`;
+  db.query(query, [requestId, userId], (err, result) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+    res.json({ message: "Friend request accepted" });
+  });
+});
+
+
+app.get("/friends", (req, res) => {
+  const userId = req.session?.user?.id;
+
+  if (!userId) return res.status(401).json({ message: "Not logged in" });
+
+  const query = `
+    SELECT u.id, u.name, u.profile_photo,u.dob,
+        u.email,
+        u.phone,
+        u.city,
+        u.state,
+        u.country,
+        u.gender,
+        u.current_status,
+        u.followers,
+        u.age_group,
+        u.education
+    FROM users u
+    JOIN friend_requests f ON 
+      ((f.sender_id = ? AND f.receiver_id = u.id) OR (f.receiver_id = ? AND f.sender_id = u.id))
+      AND f.status = 'accepted'
+  `;
+  db.query(query, [userId, userId], (err, results) => {
+    if (err) return res.status(500).json({ error: "Database error" });
+    res.json(results);
+  });
+});
+
 
 app.post("/logout", (req, res) => {
   req.session.destroy((err) => {

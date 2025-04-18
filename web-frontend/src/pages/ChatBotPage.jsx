@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaRobot, FaUser, FaArrowLeft, FaPaperPlane } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-const ChatbotPage = ({ history }) => {
+const ChatbotPage = () => {
   const navigate = useNavigate();
 
   const [messages, setMessages] = useState([
@@ -15,12 +15,15 @@ const ChatbotPage = ({ history }) => {
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messageListRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (messageListRef.current) {
-      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
-    }
+    scrollToBottom();
   }, [messages, isTyping]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -86,356 +89,119 @@ const ChatbotPage = ({ history }) => {
     }
   };
 
-  const renderItem = ({ item }) => (
-    <div 
-      style={{
-        ...styles.messageWrapper,
-        justifyContent: item.sender === "user" ? "flex-end" : "flex-start",
-      }}
-    >
-      {item.sender === "bot" && (
-        <div style={styles.avatarContainer}>
-          <FaRobot size={20} color="#fff" />
-        </div>
-      )}
-
-      <div
-        style={{
-          ...styles.messageContainer,
-          ...(item.sender === "user" ? styles.userMessage : styles.botMessage),
-        }}
-      >
-        <p
-          style={{
-            ...styles.messageText,
-            ...(item.sender === "user" ? styles.userMessageText : styles.botMessageText),
-          }}
-        >
-          {item.text}
-        </p>
-        <span style={item.sender === "user" ? styles.userTimestamp : styles.botTimestamp}>
-          {item.timestamp}
-        </span>
-      </div>
-
-      {item.sender === "user" && (
-        <div style={{...styles.avatarContainer, ...styles.userAvatar}}>
-          <FaUser size={20} color="#fff" />
-        </div>
-      )}
-    </div>
-  );
-
-  
-
-  const renderTypingIndicator = () => (
-    <div style={styles.messageWrapper}>
-      <div style={styles.avatarContainer}>
-        <FaRobot size={20} color="#fff" />
-      </div>
-      <div style={{ ...styles.messageContainer, ...styles.botMessage, ...styles.typingContainer }}>
-        <div style={styles.typingIndicator}>
-          <div style={{...styles.typingDot, animationDelay: "0s"}} />
-          <div style={{...styles.typingDot, animationDelay: "0.2s"}} />
-          <div style={{...styles.typingDot, animationDelay: "0.4s"}} />
-        </div>
-      </div>
-    </div>
-  );
-
-  const renderHeader = () => (
-    <div style={styles.header}>
-      <div style={styles.headerContent}>
-        <button 
-          style={styles.backButton} 
-          onClick={() => navigate(-1)}
-        >
-          <FaArrowLeft size={18} color="#fff" />
-        </button>
-        <div style={styles.headerInfo}>
-          <p style={styles.headerTitle}>Hobby Assistant</p>
-          <p style={styles.headerSubtitle}>Online</p>
-        </div>
-      </div>
-    </div>
-  );
-
   const handleKeyPress = (e) => {
     if (e.key === "Enter") handleSend();
   };
-  
-  const messagesEndRef = useRef(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
 
   return (
-    
-    <div style={styles.safeArea}>
-      {renderHeader()}
-      <div ref={messageListRef} style={styles.messageList}>
-        <div style={styles.dateIndicator}>
-          <span style={styles.dateText}>Today</span>
+    <div className="flex flex-col h-screen bg-gray-50 font-sans">
+      {/* Header */}
+      <header className="bg-gradient-to-r from-purple-700 to-blue-500 p-4 shadow-md">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate(-1)}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors duration-200"
+            aria-label="Go back"
+          >
+            <FaArrowLeft className="text-white text-lg" />
+          </button>
+          <div>
+            <h1 className="text-xl font-bold text-white">Hobby Assistant</h1>
+            <p className="text-xs text-white/80">Online</p>
+          </div>
         </div>
-        {messages.map((msg) => renderItem({ item: msg }))}
-        {isTyping && renderTypingIndicator()}
-      </div >
-      <div ref={messagesEndRef} />
-      <div style={styles.inputContainer}>
-        <input
-          style={styles.input}
-          placeholder="Ask something about hobbies..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyPress}
-        />
-        <button 
-          onClick={handleSend} 
-          style={{
-            ...styles.sendButton,
-            backgroundColor: input.trim() ? "#6a11cb" : "#d1d1d1",
-            cursor: input.trim() ? "pointer" : "default"
-          }}
-          disabled={!input.trim()}
-        >
-          <FaPaperPlane size={18} color="#fff" />
-        </button>
+      </header>
+
+      {/* Messages Area */}
+      <div 
+        ref={messageListRef} 
+        className="flex-1 p-4 overflow-y-auto mb-20 scroll-smooth"
+      >
+        <div className="flex justify-center my-4">
+          <span className="px-3 py-1 text-xs bg-gray-200 text-gray-600 rounded-full">Today</span>
+        </div>
+        
+        {messages.map((message) => (
+          <div 
+            key={message.id}
+            className={`flex items-end mb-4 ${message.sender === "user" ? "justify-end" : "justify-start"}`}
+          >
+            {message.sender === "bot" && (
+              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shadow-sm mr-2">
+                <FaRobot className="text-white text-sm" />
+              </div>
+            )}
+            
+            <div 
+              className={`max-w-[70%] p-3 rounded-2xl shadow-sm ${
+                message.sender === "user" 
+                  ? "bg-gradient-to-r from-purple-700 to-blue-500 text-white rounded-tr-sm" 
+                  : "bg-white border border-gray-100 text-gray-800 rounded-tl-sm"
+              }`}
+            >
+              <p className="text-sm leading-relaxed mb-1">{message.text}</p>
+              <span 
+                className={`text-[10px] block text-right ${
+                  message.sender === "user" ? "text-white/70" : "text-gray-400"
+                }`}
+              >
+                {message.timestamp}
+              </span>
+            </div>
+            
+            {message.sender === "user" && (
+              <div className="w-8 h-8 rounded-full bg-purple-700 flex items-center justify-center shadow-sm ml-2">
+                <FaUser className="text-white text-sm" />
+              </div>
+            )}
+          </div>
+        ))}
+        
+        {isTyping && (
+          <div className="flex items-end mb-4">
+            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center shadow-sm mr-2">
+              <FaRobot className="text-white text-sm" />
+            </div>
+            
+            <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-gray-100">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: "0s" }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div ref={messagesEndRef} />
+      </div>
+
+      {/* Input Area */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 shadow-lg">
+        <div className="flex items-center gap-3 max-w-4xl mx-auto">
+          <input
+            type="text"
+            placeholder="Ask something about hobbies..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyPress}
+            className="flex-1 py-3 px-4 bg-gray-100 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
+          />
+          <button
+            onClick={handleSend}
+            disabled={!input.trim()}
+            className={`w-12 h-12 rounded-full flex items-center justify-center shadow-md transition-all duration-200 ${
+              input.trim() 
+                ? "bg-gradient-to-r from-purple-700 to-blue-500 hover:opacity-90 cursor-pointer" 
+                : "bg-gray-300 cursor-not-allowed"
+            }`}
+          >
+            <FaPaperPlane className="text-white text-lg" />
+          </button>
+        </div>
       </div>
     </div>
   );
 };
-
-const styles = {
-  safeArea: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100vh",
-    backgroundColor: "#f5f7fa",
-    fontFamily: "'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-  },
-  header: {
-    padding: "16px",
-    background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-    boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-  },
-  headerContent: {
-    display: "flex",
-    alignItems: "center",
-    gap: "12px",
-  },
-  headerInfo: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  headerTitle: {
-    fontSize: "20px",
-    color: "#fff",
-    fontWeight: "bold",
-    margin: "0",
-  },
-  headerSubtitle: {
-    fontSize: "12px",
-    color: "rgba(255, 255, 255, 0.8)",
-    margin: "0",
-  },
-  backButton: {
-    background: "rgba(255, 255, 255, 0.2)",
-    border: "none",
-    borderRadius: "50%",
-    width: "36px",
-    height: "36px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    cursor: "pointer",
-    transition: "background 0.2s ease",
-  },
-  dateIndicator: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "20px 0",
-  },
-  dateText: {
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
-    color: "#666",
-    fontSize: "12px",
-    padding: "4px 12px",
-    borderRadius: "12px",
-  },
-  messageList: {
-    flex: 1,
-    padding: "10px 16px",
-    overflowY: "auto",
-    marginBottom: "70px", // Space for input bar
-  },
-  messageWrapper: {
-    display: "flex",
-    flexDirection: "row",
-    marginBottom: "16px",
-    alignItems: "flex-end",
-    position: "relative",
-  },
-  avatarContainer: {
-    width: "34px",
-    height: "34px",
-    borderRadius: "17px",
-    backgroundColor: "#2575fc",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginRight: "8px",
-    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-  },
-  userAvatar: {
-    backgroundColor: "#6a11cb",
-    marginLeft: "8px",
-    marginRight: "0",
-  },
-  messageContainer: {
-    maxWidth: "70%",
-    padding: "12px 16px",
-    borderRadius: "18px",
-    position: "relative",
-    boxShadow: "0 1px 2px rgba(0, 0, 0, 0.1)",
-  },
-  userMessage: {
-    background: "linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)",
-    color: "#fff",
-    borderTopRightRadius: "4px",
-  },
-  botMessage: {
-    backgroundColor: "#fff",
-    borderTopLeftRadius: "4px",
-    border: "1px solid rgba(0, 0, 0, 0.04)",
-  },
-  messageText: {
-    fontSize: "15px",
-    margin: "0 0 4px 0",
-    lineHeight: "1.4",
-  },
-  userMessageText: {
-    color: "#fff",
-  },
-  botMessageText: {
-    color: "#333",
-  },
-  userTimestamp: {
-    fontSize: "10px",
-    color: "rgba(255, 255, 255, 0.7)",
-    textAlign: "right",
-    display: "block",
-  },
-  botTimestamp: {
-    fontSize: "10px",
-    color: "#999",
-    textAlign: "right", 
-    display: "block",
-  },
-  inputContainer: {
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    display: "flex",
-    alignItems: "center",
-    padding: "15px",
-    backgroundColor: "#fff",
-    borderTop: "1px solid rgba(0, 0, 0, 0.05)",
-    boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.05)",
-    zIndex: 10,
-  },
-  input: {
-    flex: 1,
-    height: "44px",
-    borderRadius: "22px",
-    padding: "0 20px",
-    border: "1px solid #e0e0e0",
-    fontSize: "15px",
-    backgroundColor: "#f5f7fa",
-    transition: "all 0.2s ease",
-    outline: "none",
-    boxShadow: "inset 0 1px 3px rgba(0, 0, 0, 0.05)",
-  },
-  sendButton: {
-    marginLeft: "10px",
-    width: "44px",
-    height: "44px",
-    backgroundColor: "#6a11cb",
-    borderRadius: "50%",
-    border: "none",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    boxShadow: "0 2px 6px rgba(106, 17, 203, 0.3)",
-    transition: "all 0.2s ease",
-  },
-  typingContainer: {
-    padding: "12px",
-    minWidth: "60px",
-  },
-  typingIndicator: {
-    display: "flex",
-    flexDirection: "row",
-    gap: "5px",
-  },
-  typingDot: {
-    width: "8px",
-    height: "8px",
-    borderRadius: "50%",
-    backgroundColor: "#bbb",
-    animation: "pulse 1.5s infinite",
-    opacity: 0.6,
-  },
-  "@keyframes pulse": {
-    "0%, 100%": {
-      transform: "scale(0.7)",
-      opacity: 0.4
-    },
-    "50%": {
-      transform: "scale(1)",
-      opacity: 1
-    }
-  }
-};
-
-// Add the animation for typing dots
-const styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = `
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(0.7);
-      opacity: 0.4;
-    }
-    50% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
-  .typingDot {
-    animation: pulse 1.5s infinite;
-  }
-  
-  .typingDot:nth-child(1) {
-    animation-delay: 0s;
-  }
-  
-  .typingDot:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  
-  .typingDot:nth-child(3) {
-    animation-delay: 0.4s;
-  }
-`;
-document.head.appendChild(styleSheet);
 
 export default ChatbotPage;
