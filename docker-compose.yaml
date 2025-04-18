@@ -1,0 +1,67 @@
+services:
+  user_server:
+    build: ./user_server
+    ports:
+      - 3005:3005
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
+
+  chat_server:
+    build: ./chat_server
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "nc", "-z", "mysql_db", "3306"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s 
+
+  vendor_server:
+    build: ./vendor_server
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
+    depends_on:
+      - mysql_db
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "nc", "-z", "mysql_db", "3306"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  mysql_db:
+    image: mysql:8
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"  # Access it at http://localhost:8080
+    environment:
+      PMA_HOST: mysql_db  # This should match your MySQL service name
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - mysql_db
+
+volumes:
+  mysql_data:

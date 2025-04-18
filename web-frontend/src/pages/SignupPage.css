@@ -1,0 +1,120 @@
+.signup-container {
+    min-height: 100vh;
+    background: linear-gradient(#f8f9fa, #e9ecef);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+  }
+  
+  .signup-card {
+    background: white;
+    padding: 35px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    max-width: 420px;
+    width: 100%;
+  }
+  
+  .signup-logo {
+    text-align: center;
+    color: #4a6eff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+  
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+  
+  .input.error {
+    border-color: #ff4444;
+  }
+  
+  .error-text {
+    color: #ff4444;
+    font-size: 13px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+  
+  .input-password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-password-container input {
+    flex: 1;
+  }
+  
+  .eye-toggle {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .terms {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  .link {
+    color: #4a6eff;
+    cursor: pointer;
+  }
+  
+  .signup-button {
+    background: #4a6eff;
+    color: white;
+    border: none;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .signup-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .signin-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+  
+  .signin-link span {
+    color: #4a6eff;
+    cursor: pointer;
+  }
+  

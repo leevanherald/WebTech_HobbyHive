@@ -1,0 +1,5 @@
+node_modules
+.expo
+DataBase Scripts
+**/.env
+**/node_modules/

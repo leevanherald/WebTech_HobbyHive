@@ -1,0 +1,659 @@
+Server listening on port 55557
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    at PromisePool.query (/workspace/BackendServer/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:384:30
+    at new Promise (<anonymous>)
+    at MySQLStore.query (/workspace/BackendServer/node_modules/express-mysql-session/index.js:381:10)
+    at /workspace/BackendServer/node_modules/express-mysql-session/index.js:232:16
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
