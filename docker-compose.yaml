@@ -1,12 +1,13 @@
 services:
-  web:
-    build: ./web-frontend
-    ports:
-      - 8081:8081
-    env_file:
-      - .env
-    depends_on:
-      - mysql_db
+  # web:
+  #   build: ./web-frontend
+  #   ports:
+  #     - 8081:8081
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql_db
+  
   user_server:
     build: ./user_server
     ports:
@@ -31,22 +32,22 @@ services:
       retries: 5
       start_period: 30s
       timeout: 5s 
-
-  vendor_server:
-    build: ./vendor_server
-    ports:
-      - 5000:5000
-    env_file:
-      - .env
-    depends_on:
-      - mysql_db
-    restart: on-failure
-    healthcheck:
-      test: ["CMD", "nc", "-z", "mysql_db", "3306"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 5s
+  
+  # vendor_server:
+  #   build: ./vendor_server
+  #   ports:
+  #     - 5000:5000
+  #   env_file:
+  #     - .env
+  #   depends_on:
+  #     - mysql_db
+  #   restart: on-failure
+  #   healthcheck:
+  #     test: ["CMD", "nc", "-z", "mysql_db", "3306"]
+  #     interval: 10s
+  #     retries: 5
+  #     start_period: 30s
+  #     timeout: 5s
 
   mysql_db:
     image: mysql:8

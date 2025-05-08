@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import NavigationBar from './NavigationBar';
+import { FiUser, FiCheck, FiX, FiRefreshCw } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
-const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
+const FriendRequestsPage = () => {
   const [requests, setRequests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const fetchRequests = async () => {
-    setIsLoading(true);
+    const loadingState = isRefreshing ? setIsRefreshing : setIsLoading;
+    loadingState(true);
     try {
       const response = await fetch('http://localhost:3005/friend-requests', {
         method: 'GET',
@@ -16,8 +19,9 @@ const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
       setRequests(data);
     } catch (err) {
       console.error('Error fetching friend requests:', err);
+      toast.error('Failed to load friend requests');
     } finally {
-      setIsLoading(false);
+      loadingState(false);
     }
   };
 
@@ -35,16 +39,14 @@ const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
 
       const result = await response.json();
       if (response.ok) {
-        // Use toast notification instead of alert for better UX
-        const message = action === 'accept' ? 'Friend request accepted!' : 'Friend request rejected';
-        // Replace alert with toast when you have a toast system
-        alert(message);
+        toast.success(action === 'accept' ? 'Friend request accepted!' : 'Friend request declined');
         setRequests(prev => prev.filter(req => req.id !== requestId));
       } else {
-        alert(result.message || 'Failed to respond to request');
+        toast.error(result.message || 'Failed to respond to request');
       }
     } catch (err) {
       console.error(`Error responding to request:`, err);
+      toast.error('An error occurred while processing your request');
     }
   };
 
@@ -53,37 +55,49 @@ const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      
-      <div className="max-w-4xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-          <div className="border-b border-gray-200 px-6 py-5">
-            <h1 className="text-2xl font-bold text-gray-900">Friend Requests</h1>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50">
+      <div className="max-w-2xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-5">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-bold text-white">Friend Requests</h1>
+              <button
+                onClick={fetchRequests}
+                disabled={isRefreshing}
+                className="text-indigo-100 hover:text-white transition-colors flex items-center"
+              >
+                <FiRefreshCw className={`mr-1 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <span className="text-sm">Refresh</span>
+              </button>
+            </div>
           </div>
           
+          {/* Content */}
           <div className="px-6 py-4">
             {isLoading ? (
               <div className="flex justify-center items-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-indigo-600"></div>
               </div>
             ) : requests.length === 0 ? (
               <div className="text-center py-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
-                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                  </svg>
+                <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-indigo-100 mb-4">
+                  <FiUser className="h-8 w-8 text-indigo-600" />
                 </div>
-                <p className="text-gray-500 text-lg">No pending friend requests</p>
+                <h3 className="text-lg font-medium text-gray-900">No pending requests</h3>
+                <p className="mt-1 text-gray-500">
+                  When you receive friend requests, they'll appear here.
+                </p>
               </div>
             ) : (
               <ul className="divide-y divide-gray-200">
                 {requests.map((req) => (
-                  <li key={req.id} className="py-4 sm:py-5">
-                    <div className="flex items-center justify-between flex-wrap sm:flex-nowrap gap-4">
-                      <div className="flex items-center gap-3">
+                  <li key={req.id} className="py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
                         <div className="flex-shrink-0">
-                          <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
-                            <span className="text-blue-600 font-medium text-lg">
+                          <div className="h-12 w-12 rounded-full bg-indigo-100 flex items-center justify-center">
+                            <span className="text-indigo-600 font-bold text-lg">
                               {req.senderName.charAt(0).toUpperCase()}
                             </span>
                           </div>
@@ -91,20 +105,26 @@ const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
                         <div>
                           <h3 className="text-base font-medium text-gray-900">{req.senderName}</h3>
                           <p className="text-sm text-gray-500">{req.senderEmail}</p>
+                          <p className="text-xs text-gray-400 mt-1">
+                            Sent {new Date(req.createdAt).toLocaleDateString()}
+                          </p>
                         </div>
                       </div>
-                      
-                      <div className="flex gap-3 mt-2 sm:mt-0">
+                      <div className="flex space-x-2">
                         <button
                           onClick={() => respondToRequest(req.id, 'accept')}
-                          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+                          className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                          title="Accept request"
                         >
+                          <FiCheck className="mr-1" />
                           Accept
                         </button>
                         <button
                           onClick={() => respondToRequest(req.id, 'reject')}
-                          className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+                          className="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-full shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                          title="Decline request"
                         >
+                          <FiX className="mr-1" />
                           Decline
                         </button>
                       </div>
@@ -113,18 +133,6 @@ const FriendRequestsPage = ({ toggleChatbot, isChatbotVisible }) => {
                 ))}
               </ul>
             )}
-          </div>
-          
-          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-            <button 
-              onClick={fetchRequests} 
-              className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800"
-            >
-              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-              </svg>
-              Refresh requests
-            </button>
           </div>
         </div>
       </div>

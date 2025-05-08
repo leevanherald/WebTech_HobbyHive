@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { FaSearch, FaTimes, FaCheckCircle, FaRegCircle } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
+import { FiCheck, FiCircle } from "react-icons/fi";
 
 const hobbiesData = {
   "Creative Arts": ["Painting", "Drawing", "Sculpting", "Photography", "Digital Art"],
@@ -22,6 +23,7 @@ const HobbySelectionPage = () => {
   const [search, setSearch] = useState("");
   const [expandedSections, setExpandedSections] = useState({});
   const [selectedHobbies, setSelectedHobbies] = useState([]);
+  const navigate = useNavigate();
 
   const toggleSection = (category) => {
     setExpandedSections((prev) => ({
@@ -37,11 +39,10 @@ const HobbySelectionPage = () => {
         : [...prev, hobby]
     );
   };
-  const navigate = useNavigate(); // Hook for navigation in React Router v6
+
   const handleContinue = () => {
     navigate("/hobbies-details", { state: { selectedHobbies } });
   };
-
 
   const filteredCategories = Object.keys(hobbiesData).filter((category) => {
     const matchesCategory = category.toLowerCase().includes(search.toLowerCase());
@@ -52,92 +53,121 @@ const HobbySelectionPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-50 p-6">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-indigo-600">Discover Your Interests</h1>
-          <p className="text-gray-600 mt-2">Select hobbies that excite you</p>
-        </div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-8"
+        >
+          <h1 className="text-4xl font-bold text-indigo-800 mb-2">Discover Your Interests</h1>
+          <p className="text-lg text-gray-600">Select hobbies that excite you the most</p>
+        </motion.div>
 
         {/* Search bar */}
-        <div className="flex items-center max-w-lg mx-auto mb-6 bg-white rounded-md shadow-sm px-3 py-2">
-          <FaSearch className="text-gray-500 mr-2" />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+          className="flex items-center max-w-2xl mx-auto mb-8 bg-white rounded-full shadow-sm px-5 py-3 border border-gray-200 focus-within:ring-2 focus-within:ring-indigo-300 focus-within:border-indigo-400 transition-all duration-200"
+        >
+          <FaSearch className="text-gray-500 mr-3" size={18} />
           <input
             type="text"
-            className="flex-1 focus:outline-none"
+            className="flex-1 focus:outline-none text-lg"
             placeholder="Search hobbies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
           {search && (
-            <button onClick={() => setSearch("")}>
-              <FaTimes className="text-gray-400 hover:text-red-500" />
+            <button 
+              onClick={() => setSearch("")}
+              className="text-gray-400 hover:text-indigo-600 transition-colors"
+            >
+              <FaTimes size={18} />
             </button>
           )}
-        </div>
+        </motion.div>
 
         {/* Categories */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {filteredCategories.map((category) => (
-            <div key={category} className="bg-white rounded-lg shadow p-4">
+            <motion.div
+              key={category}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 100 }}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+            >
               <div
-                className="flex justify-between items-center cursor-pointer"
+                className="flex justify-between items-center cursor-pointer p-4 hover:bg-gray-50 transition-colors"
                 onClick={() => toggleSection(category)}
               >
-                <h2 className="text-lg font-semibold">{category}</h2>
+                <h2 className="text-lg font-semibold text-gray-800">{category}</h2>
                 {expandedSections[category] ? (
-                  <MdExpandLess size={24} />
+                  <MdExpandLess className="text-gray-500" size={24} />
                 ) : (
-                  <MdExpandMore size={24} />
+                  <MdExpandMore className="text-gray-500" size={24} />
                 )}
               </div>
 
-              {expandedSections[category] && (
-                <div className="mt-3 space-y-2">
-                  {hobbiesData[category].map((hobby) => {
-                    const isSelected = selectedHobbies.includes(hobby);
-                    return (
-                      <div
-                        key={hobby}
-                        className="flex items-center cursor-pointer hover:bg-gray-100 px-2 py-1 rounded-md"
-                        onClick={() => toggleHobby(hobby)}
-                      >
-                        {isSelected ? (
-                          <FaCheckCircle className="text-indigo-600 mr-2" />
-                        ) : (
-                          <FaRegCircle className="text-gray-400 mr-2" />
-                        )}
-                        <span
-                          className={`${isSelected ? "font-medium text-indigo-700" : ""
-                            }`}
-                        >
-                          {hobby}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+              <AnimatePresence>
+                {expandedSections[category] && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="px-4 pb-4"
+                  >
+                    <div className="space-y-2">
+                      {hobbiesData[category].map((hobby) => {
+                        const isSelected = selectedHobbies.includes(hobby);
+                        return (
+                          <motion.div
+                            key={hobby}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`flex items-center cursor-pointer p-3 rounded-lg transition-colors ${isSelected ? "bg-indigo-50" : "hover:bg-gray-50"}`}
+                            onClick={() => toggleHobby(hobby)}
+                          >
+                            <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mr-3 ${isSelected ? "bg-indigo-600 border-indigo-600" : "border-gray-300"}`}>
+                              {isSelected && <FiCheck className="text-white" size={12} />}
+                            </div>
+                            <span className={`${isSelected ? "font-medium text-indigo-700" : "text-gray-700"}`}>
+                              {hobby}
+                            </span>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           ))}
         </div>
 
         {/* Selected summary and continue button */}
-        <div className="mt-10 text-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mt-12 text-center"
+        >
           <p className="text-gray-600 mb-4">
-            {selectedHobbies.length} hobby{selectedHobbies.length !== 1 && "ies"} selected
+            {selectedHobbies.length} {selectedHobbies.length === 1 ? "hobby" : "hobbies"} selected
           </p>
-          <button
+          <motion.button
             onClick={handleContinue}
             disabled={selectedHobbies.length === 0}
-            style={{
-              backgroundColor: selectedHobbies.length > 0 ? "indigo" : "gray",
-              cursor: selectedHobbies.length > 0 ? "pointer" : "not-allowed",
-            }}
+            className={`px-8 py-3 rounded-lg font-medium text-white shadow-md transition-all ${selectedHobbies.length > 0 ? "bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700" : "bg-gray-400 cursor-not-allowed"}`}
+            whileHover={selectedHobbies.length > 0 ? { scale: 1.02 } : {}}
+            whileTap={selectedHobbies.length > 0 ? { scale: 0.98 } : {}}
           >
             Continue
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </div>
   );

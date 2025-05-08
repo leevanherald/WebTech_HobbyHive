@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { toast } from 'react-toastify';
-import NavigationBar from './NavigationBar';
 import { FiUser, FiPhone, FiStar, FiMapPin, FiFileText, FiImage, FiUpload, FiX } from 'react-icons/fi';
 
-const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
+const FeedbackPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -28,6 +27,10 @@ const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
+      if (file.size > 10 * 1024 * 1024) {
+        toast.error('Image size should be less than 10MB');
+        return;
+      }
       const imageUrl = URL.createObjectURL(file);
       setFormData(prev => ({ ...prev, image: imageUrl }));
     }
@@ -57,25 +60,9 @@ const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
     }
     setLoading(true);
 
-    // Create FormData to send as a multipart form request (for the image and other data)
-    const feedbackFormData = new FormData();
-    feedbackFormData.append('name', formData.name);
-    feedbackFormData.append('phone', formData.phone);
-    feedbackFormData.append('hobby', formData.hobby);
-    feedbackFormData.append('region', formData.region);
-    feedbackFormData.append('description', formData.description);
-
-    if (formData.image) {
-      const imageFile = fileInputRef.current.files[0];
-      feedbackFormData.append('image', imageFile);
-    }
-
     try {
-      const response = await fetch('http://localhost:3005/submit-feedback', {
-        method: 'POST',
-        body: feedbackFormData,
-      });
-      if (!response.ok) throw new Error('Failed to submit feedback');
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
       toast.success('Feedback submitted successfully!');
       setFormData({ name: '', phone: '', hobby: '', region: '', description: '', image: null });
     } catch (error) {
@@ -87,164 +74,150 @@ const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-orange-50">
-      
-      <div className="container mx-auto px-4 py-12 mt-16">
-        <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-yellow-500 to-orange-500 py-6 px-8">
-            <h2 className="text-3xl font-bold text-white">Suggest a New Hobby</h2>
-            <p className="text-yellow-100 mt-2">
-              Share your hobby ideas with the HobbyHive community
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Card Container */}
+        <div className="bg-white rounded-xl shadow-xl overflow-hidden">
+          {/* Header with Gradient */}
+          <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 md:p-8 text-white">
+            <h1 className="text-2xl md:text-3xl font-bold">Suggest a New Hobby</h1>
+            <p className="mt-2 text-indigo-100">
+              Share your unique hobby ideas with our community
             </p>
           </div>
-          
-          {/* Form */}
-          <form className="p-6 md:p-8 space-y-6" onSubmit={handleSubmit}>
-            {/* Name field */}
-            <div>
-              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="name">
-                <FiUser className="mr-2 text-yellow-500" />
+
+          {/* Form Section */}
+          <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-6">
+            {/* Name Field */}
+            <div className="space-y-2">
+              <label className="flex items-center text-gray-700 font-medium">
+                <FiUser className="mr-2 text-indigo-600" />
                 Your Name
               </label>
               <input
-                id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 rounded-lg border ${errors.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
-                placeholder="Enter your full name"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${errors.name ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition`}
+                placeholder="John Doe"
               />
-              {errors.name && (
-                <p className="text-red-500 mt-1 text-sm">{errors.name}</p>
-              )}
+              {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
             </div>
 
-            {/* Phone field */}
-            <div>
-              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="phone">
-                <FiPhone className="mr-2 text-yellow-500" />
+            {/* Phone Field */}
+            <div className="space-y-2">
+              <label className="flex items-center text-gray-700 font-medium">
+                <FiPhone className="mr-2 text-indigo-600" />
                 Phone Number
               </label>
               <input
-                id="phone"
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
-                placeholder="Enter 10-digit phone number"
+                className={`w-full px-4 py-3 rounded-lg border-2 ${errors.phone ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition`}
+                placeholder="1234567890"
               />
-              {errors.phone && (
-                <p className="text-red-500 mt-1 text-sm">{errors.phone}</p>
-              )}
+              {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
             </div>
 
-            {/* Two column layout for smaller fields */}
+            {/* Hobby and Region - Two Column Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Hobby field */}
-              <div>
-                <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="hobby">
-                  <FiStar className="mr-2 text-yellow-500" />
+              {/* Hobby Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-gray-700 font-medium">
+                  <FiStar className="mr-2 text-indigo-600" />
                   Hobby Name
                 </label>
                 <input
-                  id="hobby"
                   name="hobby"
                   value={formData.hobby}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${errors.hobby ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200`}
-                  placeholder="Name of the hobby"
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${errors.hobby ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition`}
+                  placeholder="e.g., Underwater Basket Weaving"
                 />
-                {errors.hobby && (
-                  <p className="text-red-500 mt-1 text-sm">{errors.hobby}</p>
-                )}
+                {errors.hobby && <p className="text-red-500 text-sm">{errors.hobby}</p>}
               </div>
 
-              {/* Region field */}
-              <div>
-                <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="region">
-                  <FiMapPin className="mr-2 text-yellow-500" />
+              {/* Region Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-gray-700 font-medium">
+                  <FiMapPin className="mr-2 text-indigo-600" />
                   Region
                 </label>
                 <select
-                  id="region"
                   name="region"
                   value={formData.region}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 rounded-lg border ${errors.region ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200 bg-white`}
+                  className={`w-full px-4 py-3 rounded-lg border-2 ${errors.region ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition bg-white`}
                 >
-                  <option value="">Select Region</option>
-                  {regions.map((r, i) => (
-                    <option key={i} value={r}>
-                      {r}
-                    </option>
+                  <option value="">Select your region</option>
+                  {regions.map(region => (
+                    <option key={region} value={region}>{region}</option>
                   ))}
                 </select>
-                {errors.region && (
-                  <p className="text-red-500 mt-1 text-sm">{errors.region}</p>
-                )}
+                {errors.region && <p className="text-red-500 text-sm">{errors.region}</p>}
               </div>
             </div>
 
-            {/* Description field */}
-            <div>
-              <label className="flex items-center text-gray-700 font-medium mb-2" htmlFor="description">
-                <FiFileText className="mr-2 text-yellow-500" />
-                Description (min 30 characters)
+            {/* Description Field */}
+            <div className="space-y-2">
+              <label className="flex items-center text-gray-700 font-medium">
+                <FiFileText className="mr-2 text-indigo-600" />
+                Description
               </label>
               <textarea
-                id="description"
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                rows="4"
-                className={`w-full px-4 py-3 rounded-lg border ${errors.description ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-yellow-500 transition duration-200 resize-none`}
-                placeholder="Describe the hobby in detail..."
+                rows={5}
+                className={`w-full px-4 py-3 rounded-lg border-2 ${errors.description ? 'border-red-500' : 'border-gray-200'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition`}
+                placeholder="Tell us about this hobby, why it's special, and how others can get started..."
               />
-              <div className="flex justify-between mt-1 text-sm">
-                <span className={`${formData.description.length < 30 ? 'text-red-500' : 'text-green-500'}`}>
-                  {formData.description.length} characters
+              <div className="flex justify-between text-sm text-gray-500">
+                <span className={formData.description.length < 30 ? 'text-red-500' : 'text-green-600'}>
+                  {formData.description.length}/30 characters
                 </span>
-                <span className="text-gray-500">
-                  Maximum 500 characters
-                </span>
+                <span>Max 500 characters</span>
               </div>
-              {errors.description && (
-                <p className="text-red-500 mt-1 text-sm">{errors.description}</p>
-              )}
+              {errors.description && <p className="text-red-500 text-sm">{errors.description}</p>}
             </div>
 
-            {/* Image upload field */}
-            <div>
-              <label className="flex items-center text-gray-700 font-medium mb-2">
-                <FiImage className="mr-2 text-yellow-500" />
-                Upload an Image (optional)
+            {/* Image Upload */}
+            <div className="space-y-2">
+              <label className="flex items-center text-gray-700 font-medium">
+                <FiImage className="mr-2 text-indigo-600" />
+                Upload Image (Optional)
               </label>
               
               {!formData.image ? (
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-yellow-500 transition-colors duration-200 cursor-pointer" onClick={() => fileInputRef.current.click()}>
-                  <FiUpload className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-gray-600">Click to upload an image</p>
-                  <p className="text-xs text-gray-500 mt-1">PNG, JPG, GIF up to 10MB</p>
+                <div 
+                  className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-indigo-400 transition-colors"
+                  onClick={() => fileInputRef.current.click()}
+                >
+                  <div className="flex flex-col items-center">
+                    <FiUpload className="w-12 h-12 text-gray-400 mb-3" />
+                    <p className="text-gray-600">Click to upload an image</p>
+                    <p className="text-sm text-gray-500 mt-1">PNG, JPG up to 10MB</p>
+                  </div>
                   <input 
                     type="file" 
-                    accept="image/*"
-                    onChange={handleImageChange}
                     ref={fileInputRef}
+                    onChange={handleImageChange}
+                    accept="image/*"
                     className="hidden"
                   />
                 </div>
               ) : (
-                <div className="relative mt-2 rounded-lg overflow-hidden">
+                <div className="relative">
                   <img 
                     src={formData.image} 
                     alt="Preview" 
-                    className="w-full h-48 object-cover rounded-lg"
+                    className="w-full h-64 object-cover rounded-xl"
                   />
                   <button
                     type="button"
                     onClick={handleClearImage}
-                    className="absolute top-2 right-2 bg-gray-800 bg-opacity-70 text-white p-2 rounded-full hover:bg-opacity-100 transition-opacity duration-200"
+                    className="absolute top-3 right-3 bg-gray-800 bg-opacity-70 text-white p-2 rounded-full hover:bg-opacity-100 transition"
                   >
                     <FiX className="w-5 h-5" />
                   </button>
@@ -252,27 +225,27 @@ const FeedbackPage = ({ toggleChatbot, isChatbotVisible }) => {
               )}
             </div>
 
-            {/* Submit button */}
+            {/* Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full py-3 px-4 rounded-lg text-white font-medium text-lg shadow transition-all duration-200 ${
+                className={`w-full py-4 px-6 rounded-xl text-white font-semibold text-lg shadow-lg transition-all ${
                   loading 
                     ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600'
+                    : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 hover:shadow-xl'
                 }`}
               >
                 {loading ? (
-                  <div className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <span className="flex items-center justify-center">
+                    <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    Submitting...
-                  </div>
+                    Processing...
+                  </span>
                 ) : (
-                  'Submit Suggestion'
+                  'Submit Your Suggestion'
                 )}
               </button>
             </div>

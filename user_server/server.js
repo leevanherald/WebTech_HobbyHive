@@ -321,6 +321,87 @@ app.post("/saveHobbyDetails", (req, res) => {
   );
 });
 
+app.post("/recommendations", (req, res) => {
+  const email = req.session.user.email;
+  console.log(email)
+
+  const userHobbiesQuery = `SELECT hobby FROM user_hobbies WHERE email = ?`;
+
+  db.query(userHobbiesQuery, [email], (err, hobbyResults) => {
+    if (err) {
+      console.error("Error fetching user hobbies:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    const hobbies = hobbyResults.map(h => h.hobby);
+    if (hobbies.length === 0) {
+      return res.json({ recommendations: [], others: [] });
+    }
+
+    const profilesQuery = `
+      SELECT u.id, u.name, u.followers, u.city, u.state, u.country, 
+             u.gender, u.dob, u.email, u.age_group, h.hobby
+      FROM users u
+      JOIN user_hobbies h ON u.email = h.email
+      WHERE h.hobby IN (?) AND u.email <> ?
+    `;
+
+    db.query(profilesQuery, [hobbies, email], (err, profilesResults) => {
+      if (err) {
+        console.error("Error fetching profiles:", err);
+        return res.status(500).json({ error: "Database error" });
+      }
+
+      const userScoreMap = {};
+      const userProfiles = {};
+
+      profilesResults.forEach(row => {
+        if (!userScoreMap[row.email]) {
+          userScoreMap[row.email] = 0;
+          userProfiles[row.email] = {
+            id: row.id,
+            name: row.name,
+            followers: row.followers,
+            city: row.city,
+            state: row.state,
+            country: row.country,
+            gender: row.gender,
+            dob: row.dob,
+            email: row.email,
+            age_group: row.age_group,
+            hobbies: new Set()
+          };
+        }
+
+        userScoreMap[row.email] += 1;
+        userProfiles[row.email].hobbies.add(row.hobby);
+      });
+
+      // Convert to array with score and hobbies as array
+      const allProfiles = Object.entries(userProfiles).map(([email, profile]) => {
+        return {
+          ...profile,
+          email,
+          score: userScoreMap[email],
+          hobbies: Array.from(profile.hobbies)
+        };
+      });
+
+      // Sort by score descending
+      allProfiles.sort((a, b) => b.score - a.score);
+
+      const recommendations = allProfiles.slice(0, 5); // top 5
+      const recommendationEmails = new Set(recommendations.map(p => p.email));
+      const others = allProfiles.filter(p => !recommendationEmails.has(p.email));
+
+      res.json({
+        recommendations,
+        others
+      });
+    });
+  });
+});
+
 app.post("/profiles", (req, res) => {
   const email = req.session.user.email;
   const { city, state, country, age, gender, education, followers, experience } = req.body.filters;
@@ -488,6 +569,33 @@ app.post("/friend-request/accept", (req, res) => {
   db.query(query, [requestId, userId], (err, result) => {
     if (err) return res.status(500).json({ error: "Database error" });
     res.json({ message: "Friend request accepted" });
+  });
+});
+
+app.post("/checkFriendshipStatus", (req, res) => {
+  const { userId1, userId2 } = req.body;
+
+  if (!userId1 || !userId2) {
+    return res.status(400).json({ error: "Both user IDs are required." });
+  }
+
+  const query = `
+    SELECT status 
+    FROM friendships 
+    WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)
+  `;
+
+  db.query(query, [userId1, userId2, userId2, userId1], (err, results) => {
+    if (err) {
+      console.error("Error checking friendship status:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(200).json({ status: "not_friends" });
+    }
+
+    return res.status(200).json({ status: results[0].status });
   });
 });
 

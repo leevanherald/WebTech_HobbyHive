@@ -39,7 +39,7 @@ const ProfilePage = ({ toggleChatbot, isChatbotVisible }) => {
       .then(response => {
         console.log(response.data);
         window.location.reload();
-        navigate("/");
+        navigate("/home");
       })
       .catch(err => {
         console.error('Logout failed:', err);

@@ -13,7 +13,7 @@ import { IoSend } from "react-icons/io5";
 
 const socket = io("http://localhost:3000");
 
-const ChatScreen = ({ selectedFriend, currentUserId, onMinimize, onClose }) => {
+const FloatingChat = ({ selectedFriend, currentUserId, onMinimize, onClose }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -258,4 +258,4 @@ const ChatScreen = ({ selectedFriend, currentUserId, onMinimize, onClose }) => {
   );
 };
 
-export default ChatScreen;
+export default FloatingChat;
